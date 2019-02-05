@@ -1,25 +1,26 @@
 import { connect } from 'react-redux'
 import Tile from './Tile'
-import { createTile } from '../store/actions';
+import { createGrid } from '../store/actions';
 import React, { Component } from 'react'
+import { randomTile } from '../lib/random';
+import { generateGrid } from '../lib/generate';
 
 interface IGridProps {
   tiles: ITile[],
-  createTile: typeof createTile
+  createGrid: typeof createGrid
 }
 
 export class Grid extends Component<IGridProps> {
   componentDidMount() {
-    this.props.createTile({
-      height: 20,
-      color: 'red'
-    })
+    const colors = ['red', 'blue', 'yellow', 'purple', 'green'];
+    const tile = randomTile(100, 300, colors);
+    this.props.createGrid( generateGrid(30)(tile)() );
   }
 
   render() {
     return (
-      this.props.tiles.map( el =>
-        <Tile height={el.height} color={el.color}></Tile>
+      this.props.tiles.map( (el, index) =>
+        <Tile height={el.height} color={el.color} key={el.color + index}></Tile>
       )
     );
   }
@@ -29,5 +30,5 @@ const mapStateToProps = (state: IState) => ({ tiles: state.tiles });
 
 export default connect(
   mapStateToProps,
-  { createTile }
+  { createGrid }
 )(Grid)
