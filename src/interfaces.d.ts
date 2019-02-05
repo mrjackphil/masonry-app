@@ -9,5 +9,6 @@ interface ITile {
 
 interface ITileAction {
     type: string;
-    element: ITile;
+	element: ITile;
+	elements: ITile[];
 }
