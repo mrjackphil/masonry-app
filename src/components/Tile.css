@@ -1,5 +1,8 @@
 .tile {
 	margin: .5rem;
+	position: relative;
 	display: inline-block;
+	cursor: pointer;
 	width: 100%;
+	max-width: 200px;
 }
