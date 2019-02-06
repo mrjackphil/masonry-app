@@ -10,6 +10,7 @@ export const randomTile = (
   colorsArray: string[]
 ) => () => {
   return {
+	id: 0,
     height: random(minwidth, maxwidth),
     color: randomElement(colorsArray)
   };

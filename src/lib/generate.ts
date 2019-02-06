@@ -1,4 +1,4 @@
-export const generateGrid = (limit: number) => <T>(obj: () => T) => (ar: T[] = [] ): T[] =>
+export const generateGrid = (limit: number) => <T extends {id: number}>(obj: () => T) => (ar: T[] = [] ): T[] =>
 	ar.length < limit ? generateGrid(limit)(obj)(ar.concat([addLastId(ar, obj())])) : ar;
 
 const addId = <T>(id: number, obj: T) => {

@@ -20,7 +20,7 @@ export class Grid extends Component<IGridProps> {
   render() {
     return (
       this.props.tiles.map( (el, index) =>
-        <Tile height={el.height} color={el.color} key={el.color + index}></Tile>
+        <Tile id={el.id} height={el.height} color={el.color} key={el.color + index}></Tile>
       )
     );
   }
