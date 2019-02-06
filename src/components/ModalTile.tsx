@@ -1,13 +1,18 @@
 import React, { Component } from 'react'
 import './ModalTile.css';
+import { closeTile } from '../store/actions';
+import { connect } from 'react-redux';
 
 interface Props {
+	index: number;
 	el: HTMLDivElement;
 	color: string;
 	height: number;
+	tiles: ITile[];
+	closeTile: typeof closeTile;
 }
 
-export default class ModalTile extends Component<Props> {
+export class ModalTile extends Component<Props> {
 	constructor(props: Props) {
 		super(props);
 		this.state = {
@@ -54,7 +59,14 @@ export default class ModalTile extends Component<Props> {
 	click = (ev: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
 		this.close();
 		const t = ev.target as HTMLDivElement;
-		t.addEventListener('transitionend', () =>
-			t.remove())
+		t.addEventListener('transitionend', () => {
+			this.props.closeTile(this.props.index);
+		});
 	}
 }
+const mapStateToProps = (state: IState) => ({ tiles: state.tiles });
+
+export default connect(
+	mapStateToProps,
+	{ closeTile }
+)(ModalTile)
