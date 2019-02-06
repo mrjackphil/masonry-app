@@ -1,13 +1,20 @@
-import { connect } from 'react-redux'
-import Tile from './Tile'
+import { connect } from 'react-redux';
+import Tile from './Tile';
 import { createGrid } from '../store/actions';
 import React, { Component } from 'react'
 import { randomTile } from '../lib/random';
 import { generateGrid } from '../lib/generate';
+import Masonry from 'react-masonry-component';
+import './Grid.css';
 
 interface IGridProps {
   tiles: ITile[],
   createGrid: typeof createGrid
+}
+
+const masonryOptions = {
+  itemSelector: '.tile',
+  fitWidth: true
 }
 
 export class Grid extends Component<IGridProps> {
@@ -19,9 +26,13 @@ export class Grid extends Component<IGridProps> {
 
   render() {
     return (
-      this.props.tiles.map( (el, index) =>
-        <Tile params={el} key={el.color + index}></Tile>
-      )
+      <Masonry options={masonryOptions} className="grid">
+        {
+          this.props.tiles.map( (el, index) =>
+            <Tile params={el} key={el.color + index}></Tile>
+          )
+        }
+      </Masonry>
     );
   }
 }
