@@ -12,6 +12,7 @@ export const randomTile = (
   return {
 	id: 0,
     height: random(minwidth, maxwidth),
-    color: randomElement(colorsArray)
+	color: randomElement(colorsArray),
+	opened: false
   };
 };
