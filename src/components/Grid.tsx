@@ -19,7 +19,7 @@ const masonryOptions = {
 
 export class Grid extends Component<IGridProps> {
   componentDidMount() {
-    const colors = ['#f5ad92', '#ed717f', '#c67486', '#765e8d', '#00577f'];
+    const colors = ['#f5ad92', '#ed717f', '#c67486', '#765e8d', '#00577f', '#f7d6cc', '#cebcce', '#5ba4b6', '#95c7d7', '#c5dae8'];
     const tile = randomTile(100, 300, colors);
     this.props.createGrid( generateGrid(30)(tile)() );
   }
