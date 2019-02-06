@@ -12,7 +12,7 @@ interface IGridProps {
 
 export class Grid extends Component<IGridProps> {
   componentDidMount() {
-    const colors = ['red', 'blue', 'yellow', 'purple', 'green'];
+    const colors = ['#f5ad92', '#ed717f', '#c67486', '#765e8d', '#00577f'];
     const tile = randomTile(100, 300, colors);
     this.props.createGrid( generateGrid(30)(tile)() );
   }
