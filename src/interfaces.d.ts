@@ -10,7 +10,7 @@ interface ITile {
 
 interface ITileAction {
 	type: string;
-	id: string;
+	id: number;
 	element: ITile;
 	elements: ITile[];
 }
