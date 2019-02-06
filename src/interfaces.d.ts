@@ -5,7 +5,8 @@ interface IState {
 interface ITile {
 	id: number;
     height: number;
-    color: string;
+	color: string;
+	opened: boolean;
 }
 
 interface ITileAction {
