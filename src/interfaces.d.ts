@@ -3,12 +3,14 @@ interface IState {
 }
 
 interface ITile {
+	id: number;
     height: number;
     color: string;
 }
 
 interface ITileAction {
-    type: string;
+	type: string;
+	id: string;
 	element: ITile;
 	elements: ITile[];
 }
