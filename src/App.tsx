@@ -4,9 +4,11 @@ import ModalTile from './components/ModalTile';
 import Grid from './components/Grid';
 import Overlay from './components/Overlay';
 import { connect } from 'react-redux';
+import { openTile } from './store/actions';
 
 interface Props {
-  tiles: ITile[]
+  tiles: ITile[],
+  openTile: typeof openTile
 }
 class App extends Component<Props> {
   constructor(props: Props) {
@@ -22,28 +24,34 @@ class App extends Component<Props> {
   get activeTileElement() {
 	  if (this.activeTileParams.length === 1) {
 		const el = document.querySelector(`#tile_${this.activeTileParams[0].id}`) as HTMLDivElement;
-		return el ? el : null;
+		return el ? el : false;
 	  } else {
-		  return null;
+		  return false;
 	  }
+  }
+
+  componentDidMount() {
+	const match = window.location.pathname.match(/\/local\/(\d+)/);
+	if (match && match.length === 2 && Number(match[1])) {
+		this.props.openTile(Number(match[1]));
+	}
   }
 
   render() {
     return (
       <div className="App">
         {
-          this.props.tiles.filter( el => el.opened ).length > 0 && <Overlay></Overlay>
-        }
-        <Grid></Grid>
-		{
+			this.props.tiles.filter( tile => tile.loaded).length === 30 &&
 			this.activeTileParams.length === 1 &&
 			this.activeTileElement &&
+			<Overlay></Overlay> &&
             <ModalTile index={this.activeTileParams[0].id}
                        el={this.activeTileElement}
                        color={this.activeTileParams[0].color}
                        height={this.activeTileParams[0].height}>
             </ModalTile>
-          }
+        }
+        <Grid></Grid>
       </div>
     );
   }
@@ -52,5 +60,6 @@ class App extends Component<Props> {
 const mapStateToProps = (state: IState) => ({ tiles: state.tiles });
 
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  { openTile }
 )(App)
