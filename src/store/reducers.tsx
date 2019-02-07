@@ -1,27 +1,33 @@
-import { CREATE_TILE, CREATE_GRID, OPEN_TILE, CLOSE_TILE, LOADED_TILE } from './actions'
-import { combineReducers } from 'redux'
+import {
+  CREATE_TILE,
+  CREATE_GRID,
+  OPEN_TILE,
+  CLOSE_TILE,
+  LOADED_TILE
+} from "./actions";
+import { combineReducers } from "redux";
 
 const initialState: ITile[] = [];
 
 function tiles(state = initialState, action: ITileAction) {
   switch (action.type) {
-	case LOADED_TILE: {
-		return state.map( el => {
-			return el.id === action.id ? Object.assign(el, {loaded: true}) : el;
-		});
-	}
-	case OPEN_TILE:
-		return state.map( el => {
-			return el.id === action.id ? Object.assign(el, {opened: true}) : Object.assign(el, {opened: false});
-		});
-	case CLOSE_TILE:
-		return state
-			.map( el => el.id === action.id ? Object.assign(el, {opened: false}) : el );
+    case LOADED_TILE: {
+      return state.map(el => {
+        return el.id === action.id ? Object.assign(el, { loaded: true }) : el;
+      });
+    }
+    case OPEN_TILE:
+      return state.map(el => {
+        return el.id === action.id
+          ? Object.assign(el, { opened: true })
+          : Object.assign(el, { opened: false });
+      });
+    case CLOSE_TILE:
+      return state.map(el =>
+        el.id === action.id ? Object.assign(el, { opened: false }) : el
+      );
     case CREATE_TILE:
-      return [
-          ...state,
-          action.element
-		];
+      return [...state, action.element];
     case CREATE_GRID:
       return action.elements;
     default:
@@ -31,6 +37,6 @@ function tiles(state = initialState, action: ITileAction) {
 
 const layoutApp = combineReducers({
   tiles
-})
+});
 
-export default layoutApp
+export default layoutApp;

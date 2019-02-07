@@ -1,9 +1,9 @@
 .grid {
-	margin: 0 auto;
-	transform: scale(1);
-	transition: transform .4s, height .4s;
+  margin: 0 auto;
+  transform: scale(1);
+  transition: transform .4s, height .4s;
 }
 
 .hide .grid {
-	transform: scale(.7);
+  transform: scale(.7);
 }
