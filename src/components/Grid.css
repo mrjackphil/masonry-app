@@ -1,3 +1,10 @@
 .grid {
-    margin: 0 auto;
+	margin: 0 auto;
+	transform: scale(1);
+	transition: transform .4s, height .4s;
+	height: inherit !important;
+}
+
+.hide .grid {
+	transform: scale(.7);
 }
