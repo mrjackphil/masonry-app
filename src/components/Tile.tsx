@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import ModalTile from './ModalTile';
 import './Tile.css'
 import { connect } from 'react-redux';
 import { openTile } from '../store/actions';
@@ -24,7 +23,8 @@ export class Element extends Component<Props> {
       return (
         <div>
           <div
-            className='tile'
+			className='tile'
+			id={`tile_${this.props.params.id}`}
             style={{
               backgroundColor: this.props.params.color,
               height: this.props.params.height
@@ -33,17 +33,6 @@ export class Element extends Component<Props> {
           >
           {this.props.params.id}
           </div>
-          {
-            this.props.tiles
-              .filter( el => el.id === this.props.params.id)
-              .filter( el => el.opened === true).length > 0 &&
-            this.state.el &&
-            <ModalTile index={this.props.params.id}
-                       el={this.state.el}
-                       color={this.props.params.color}
-                       height={this.props.params.height}>
-            </ModalTile>
-          }
         </div>
       );
 	}
