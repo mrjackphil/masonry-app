@@ -75,6 +75,7 @@ export class ModalTile extends Component<Props, {actual: any, base: any}> {
 	}
 
 	open = () => {
+		history.pushState(null, '', `/local/${this.props.index}`);
 		this.showOverlay();
 		this.setState({
 			...this.state,
@@ -108,6 +109,7 @@ export class ModalTile extends Component<Props, {actual: any, base: any}> {
 		const t = ev.target as HTMLDivElement;
 		t.addEventListener('transitionend', () => {
 			this.props.closeTile(this.props.index);
+			history.pushState(null, '', `/`);
 		});
 	}
 }
