@@ -4,7 +4,7 @@ import './Overlay.css'
 export default class Overlay extends Component {
     render() {
         return (
-            <div className="overlay"></div>
+            <div className="overlay" onWheel={(e) => e.preventDefault()}></div>
         )
     }
 }

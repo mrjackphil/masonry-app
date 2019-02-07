@@ -37,6 +37,7 @@ export class ModalTile extends Component<Props, {actual: any, base: any}> {
 		return (
 			<div className='tile-modal' style={ this.state.actual }
 					onClick={this.click}
+					onWheel={(e) => e.preventDefault()}
 			></div>
 		)
 	}
