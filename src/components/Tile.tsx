@@ -37,10 +37,8 @@ export class Element extends Component<Props> {
       );
 	}
 
-	click = (ev: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    if (this.props.tiles.filter( el => el.opened === true).length) { return; }
-    this.setState({el: ev.target});
-    this.props.openTile(this.props.params.id);
+	click = () => {
+		this.props.openTile(this.props.params.id);
 	}
 }
 
