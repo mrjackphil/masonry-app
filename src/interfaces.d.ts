@@ -7,6 +7,7 @@ interface ITile {
     height: number;
 	color: string;
 	opened: boolean;
+	loaded: boolean;
 }
 
 interface ITileAction {
