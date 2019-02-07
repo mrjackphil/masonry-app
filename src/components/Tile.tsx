@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import './Tile.css'
 import { connect } from 'react-redux';
-import { openTile } from '../store/actions';
+import { openTile, tileLoaded } from '../store/actions';
 interface Props {
   params: ITile
   tiles: ITile[],
-  openTile: typeof openTile
+  openTile: typeof openTile,
+  tileLoaded: typeof tileLoaded,
 }
 export class Element extends Component<Props> {
 	state: {
@@ -16,6 +17,15 @@ export class Element extends Component<Props> {
 
 		this.state = {
 			el: undefined
+		}
+	}
+
+	componentDidMount() {
+		const el = document.querySelector(`#tile_${this.props.params.id}`) as HTMLDivElement;
+		if (el) {
+			el.addEventListener('transitionend', () => {
+				this.props.tileLoaded(this.props.params.id);
+			})
 		}
 	}
 
@@ -46,5 +56,5 @@ const mapStateToProps = (state: IState) => ({ tiles: state.tiles });
 
 export default connect(
   mapStateToProps,
-  { openTile }
+  { openTile, tileLoaded }
 )(Element)
