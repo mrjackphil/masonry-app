@@ -31,6 +31,7 @@ export class Element extends Component<Props> {
             }}
             onClick={this.click}
           >
+          {this.props.params.id}
           </div>
           {
             this.props.tiles

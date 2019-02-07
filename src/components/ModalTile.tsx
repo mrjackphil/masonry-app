@@ -32,6 +32,20 @@ export class ModalTile extends Component<Props> {
 		)
 	}
 
+	hideOverlay = () => {
+		const overlay = document.querySelector('.overlay') as HTMLDivElement;
+		if (overlay) {
+			overlay.classList.remove('shown');
+		}
+	}
+
+	showOverlay = () => {
+		const overlay = document.querySelector('.overlay') as HTMLDivElement;
+		if (overlay) {
+			overlay.classList.add('shown');
+		}
+	}
+
 	close = () => {
 		this.setState({
 			backgroundColor: this.props.color,
@@ -54,10 +68,12 @@ export class ModalTile extends Component<Props> {
 	componentDidMount = () => {
 		this.close();
 		this.open();
+		this.showOverlay();
 	}
 
 	click = (ev: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
 		this.close();
+		this.hideOverlay();
 		const t = ev.target as HTMLDivElement;
 		t.addEventListener('transitionend', () => {
 			this.props.closeTile(this.props.index);

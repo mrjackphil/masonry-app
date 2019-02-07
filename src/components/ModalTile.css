@@ -1,6 +1,6 @@
 .tile-modal {
 	position: fixed;
-	transition: top 2s, left 2s, width 2s, height 2s;
+	transition: top 1s, left 1s, width 1s, height 1s;
 	width: 200px;
 	background: white;
 	z-index: 1;
