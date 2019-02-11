@@ -1,5 +1,5 @@
 Masonry Layout Application. Proof-of-concept.
-
+![Masonry app gif](https://raw.githubusercontent.com/mrjackphil/masonry-app/master/screenshots/masonry.gif)
 Install dependencies.
 
 ```
